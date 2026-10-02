@@ -1,0 +1,12 @@
+{
+  "actorSpecification": 1,
+  "name": "openrouter-relay",
+  "title": "OpenRouter relay",
+  "description": "Streams OpenRouter API requests through the Apify OpenRouter Actor.",
+  "version": "0.1",
+  "usesStandbyMode": true,
+  "inputSchema": "./input_schema.json",
+  "output": "./output_schema.json",
+  "webServerSchema": "./openapi.json",
+  "dockerfile": "../Dockerfile"
+}

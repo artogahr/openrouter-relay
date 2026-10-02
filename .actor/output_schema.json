@@ -1,0 +1,7 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "OpenRouter relay output",
+  "description": "Responses are returned over HTTP and are not stored in Actor output.",
+  "type": "object",
+  "properties": {}
+}

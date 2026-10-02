@@ -1,0 +1,44 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "OpenRouter relay",
+    "version": "0.1.0",
+    "description": "OpenAI-compatible relay to apify/openrouter. Model IDs and request bodies pass through unchanged."
+  },
+  "servers": [{ "url": "https://openrouter-relay.apify.actor" }],
+  "security": [{ "ApifyToken": [] }],
+  "components": {
+    "securitySchemes": {
+      "ApifyToken": { "type": "http", "scheme": "bearer" }
+    }
+  },
+  "paths": {
+    "/api/v1/chat/completions": {
+      "post": {
+        "summary": "Stream or return a chat completion",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": { "200": { "description": "OpenRouter chat completion or SSE stream" } }
+      }
+    },
+    "/api/v1/responses": {
+      "post": {
+        "summary": "Stream or return a Responses API result",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": { "200": { "description": "OpenRouter response or SSE stream" } }
+      }
+    },
+    "/api/v1/messages": {
+      "post": {
+        "summary": "Stream or return an Anthropic-format message",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": { "200": { "description": "OpenRouter message or SSE stream" } }
+      }
+    },
+    "/api/v1/models": {
+      "get": {
+        "summary": "List available OpenRouter models",
+        "responses": { "200": { "description": "OpenRouter model catalog" } }
+      }
+    }
+  }
+}

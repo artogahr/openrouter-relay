@@ -1,0 +1,7 @@
+{
+  "title": "OpenRouter relay",
+  "description": "Send requests to the Standby URL. This Actor has no run input.",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {}
+}
