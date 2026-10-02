@@ -1,0 +1,21 @@
+name: Test Rust code
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Rust code
+        run: |
+          cargo test --locked
+          cargo fmt --check
+          cargo clippy --all-targets -- -D warnings

@@ -48,4 +48,4 @@ curl "$STANDBY_URL/api/v1/chat/completions" \
 
 ## Develop
 
-The [source code](https://github.com/artogahr/openrouter-relay) is an MIT-licensed standalone Nix flake. Run `nix develop` for the Rust toolchain, then `cargo test --locked` and `cargo clippy --all-targets -- -D warnings`. Run `nix build` to build the relay with Nix. The tests use a local mock upstream and spend no model tokens.
+The [source code](https://github.com/artogahr/openrouter-relay) is an MIT-licensed standalone Nix flake. Run `nix develop` for the Rust toolchain, then `cargo test --locked` and `cargo clippy --all-targets -- -D warnings`. Run `nix build` to build the relay with Nix. The tests use a local mock upstream and spend no model tokens. Pushes to `main` run Rust checks in GitHub Actions and start an Apify build from this repository.
