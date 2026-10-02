@@ -3,7 +3,7 @@
   "info": {
     "title": "OpenRouter relay",
     "version": "0.1.0",
-    "description": "OpenAI-compatible relay to apify/openrouter. Model IDs and request bodies pass through unchanged."
+    "description": "Send OpenRouter requests through your own Apify account. Responses and server-sent events are streamed from apify/openrouter. Use an Apify API token as the bearer credential."
   },
   "servers": [{ "url": "https://openrouter-relay.apify.actor" }],
   "security": [{ "ApifyToken": [] }],
@@ -16,28 +16,28 @@
     "/api/v1/chat/completions": {
       "post": {
         "summary": "Stream or return a chat completion",
-        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
-        "responses": { "200": { "description": "OpenRouter chat completion or SSE stream" } }
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["model", "messages"], "properties": { "model": { "type": "string", "example": "openrouter/auto" }, "messages": { "type": "array", "items": { "type": "object" } }, "stream": { "type": "boolean" } }, "additionalProperties": true } } } },
+        "responses": { "200": { "description": "Chat completion JSON or server-sent events when stream is true" }, "401": { "description": "Missing or invalid Apify API token" }, "429": { "description": "Upstream rate limit" }, "default": { "description": "Upstream error response" } }
       }
     },
     "/api/v1/responses": {
       "post": {
         "summary": "Stream or return a Responses API result",
-        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
-        "responses": { "200": { "description": "OpenRouter response or SSE stream" } }
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["model", "input"], "properties": { "model": { "type": "string", "example": "openrouter/auto" }, "input": { "description": "Input accepted by the upstream Responses API" }, "stream": { "type": "boolean" } }, "additionalProperties": true } } } },
+        "responses": { "200": { "description": "Responses API JSON or server-sent events when stream is true" }, "401": { "description": "Missing or invalid Apify API token" }, "429": { "description": "Upstream rate limit" }, "default": { "description": "Upstream error response" } }
       }
     },
     "/api/v1/messages": {
       "post": {
         "summary": "Stream or return an Anthropic-format message",
-        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
-        "responses": { "200": { "description": "OpenRouter message or SSE stream" } }
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object", "required": ["model", "messages"], "properties": { "model": { "type": "string", "example": "openrouter/auto" }, "messages": { "type": "array", "items": { "type": "object" } }, "stream": { "type": "boolean" } }, "additionalProperties": true } } } },
+        "responses": { "200": { "description": "Anthropic-format JSON or server-sent events when stream is true" }, "401": { "description": "Missing or invalid Apify API token" }, "429": { "description": "Upstream rate limit" }, "default": { "description": "Upstream error response" } }
       }
     },
     "/api/v1/models": {
       "get": {
         "summary": "List available OpenRouter models",
-        "responses": { "200": { "description": "OpenRouter model catalog" } }
+        "responses": { "200": { "description": "Available OpenRouter model catalog" }, "401": { "description": "Missing or invalid Apify API token" }, "default": { "description": "Upstream error response" } }
       }
     }
   }

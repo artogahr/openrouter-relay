@@ -1,7 +1,14 @@
 {
   "actorOutputSchemaVersion": 1,
   "title": "OpenRouter relay output",
-  "description": "Responses are returned over HTTP and are not stored in Actor output.",
+  "description": "Standby responses are returned over HTTP. Ordinary runs store one model-catalog diagnostic.",
   "type": "object",
-  "properties": {}
+  "properties": {
+    "diagnostic": {
+      "type": "string",
+      "title": "Standard run diagnostic",
+      "description": "A standard run checks that the upstream model catalog is available.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
 }
