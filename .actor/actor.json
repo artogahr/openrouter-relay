@@ -1,8 +1,8 @@
 {
   "actorSpecification": 1,
   "name": "openrouter-relay",
-  "title": "OpenRouter relay for Pi and local AI agents",
-  "description": "Use OpenRouter models in Pi and other local agents with your Apify account.",
+  "title": "OpenRouter API relay for AI agents and apps",
+  "description": "Use OpenRouter models in compatible AI agents and apps with your Apify account.",
   "version": "0.1",
   "usesStandbyMode": true,
   "inputSchema": "./input_schema.json",
